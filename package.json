@@ -4,6 +4,7 @@
   "description": "Curso NodeJS - Sección 8: REST Server",
   "main": "index.js",
   "scripts": {
+    "start": "node server/server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
