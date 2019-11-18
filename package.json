@@ -1,0 +1,21 @@
+{
+  "name": "08_restserver",
+  "version": "1.0.0",
+  "description": "Curso NodeJS - Sección 8: REST Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "REST",
+    "http",
+    "express"
+  ],
+  "author": "José Manuel Garrido Chacón",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
