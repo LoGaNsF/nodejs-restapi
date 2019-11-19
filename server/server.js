@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -14,20 +15,14 @@ app.get('/', (req, res) => {
     res.json('Hello World');
 });
 
-app.get('/users', (req, res) => {
-    res.json('users (GET)');
-});
+// users
+app.use(require('./routes/users'));
 
-app.post('/users', (req, res) => {
-    res.json({ data: req.body });
-});
-
-app.put('/users/:id', (req, res) => {
-    res.json(`User: ${req.params.id} (PUT)`);
-});
-
-app.delete('/users/:id', (req, res) => {
-    res.json(`User: ${req.params.id} (DELETE)`);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.connect(process.env.MONGODB_URL).catch(err => {
+    throw err;
 });
 
 app.listen(process.env.PORT);
