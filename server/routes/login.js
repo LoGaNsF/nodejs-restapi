@@ -18,7 +18,7 @@ app.post('/login', (req, res) => {
             return res.status(400).json({ ok: false, message: 'Usuario o contraseña incorrecto' });
         }
 
-        let token = jwt.sign({ user }, 'secret', { expiresIn: 60 * 60 * 24 * 30});
+        let token = jwt.sign({ user }, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 * 30});
 
         res.json({ ok: true, user, token });
     });
