@@ -2,9 +2,10 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const User = require('../models/user');
+const { tokenValidation, roleGranted } = require('../middlewares/authentication');
 const app = express();
 
-app.get('/users', (req, res) => {
+app.get('/users', tokenValidation, (req, res) => {
     let start = req.query.start || 0;
     let limit = req.query.limit || 5;
     let condition = { active: true };
@@ -24,7 +25,7 @@ app.get('/users', (req, res) => {
         });
 });
 
-app.post('/users', (req, res) => {
+app.post('/users', [tokenValidation, roleGranted], (req, res) => {
     let user = new User({
         name: req.body.name,
         email: req.body.email,
@@ -41,7 +42,7 @@ app.post('/users', (req, res) => {
         });
 });
 
-app.put('/users/:id', (req, res) => {
+app.put('/users/:id', [tokenValidation, roleGranted], (req, res) => {
     let body = _.pick(req.body, ['name', 'email', 'image', 'role', 'active']);
     let options = { new: true, runValidators: true };
 
@@ -54,7 +55,7 @@ app.put('/users/:id', (req, res) => {
     });
 });
 
-app.delete('/users/:id', (req, res) => {
+app.delete('/users/:id', [tokenValidation, roleGranted], (req, res) => {
     // Borrado
     /* User.findByIdAndRemove(req.params.id, (err, data) => {
         if (err) {

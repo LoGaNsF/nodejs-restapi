@@ -15,8 +15,7 @@ app.get('/', (req, res) => {
     res.json('Hello World');
 });
 
-// users
-app.use(require('./routes/users'));
+app.use(require('./routes/index'));
 
 mongoose.set('useCreateIndex', true);
 mongoose.set('useNewUrlParser', true);
