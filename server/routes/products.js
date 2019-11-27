@@ -1,7 +1,8 @@
 const express = require('express');
 const _ = require('underscore');
-const Product = require('../models/product');
 const { tokenValidation } = require('../middlewares/authentication');
+
+const Product = require('../models/product');
 
 const app = express();
 

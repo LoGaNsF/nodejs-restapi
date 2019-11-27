@@ -15,6 +15,9 @@ let productSchema = new Schema({
         type: String,
         required: false
     },
+    image: {
+        type: String
+    },
     active: {
         type: Boolean,
         required: true,
