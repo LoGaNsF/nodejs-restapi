@@ -18,6 +18,7 @@ app.use(require('./routes/index'));
 
 mongoose.set('useCreateIndex', true);
 mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
 mongoose.set('useUnifiedTopology', true);
 mongoose.connect(process.env.MONGODB_URL).catch(err => {
     throw err;

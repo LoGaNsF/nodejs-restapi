@@ -14,7 +14,7 @@ let tokenValidation = (req, res, next) => {
 
 let roleGranted = (req, res, next) => {
     if (req.user.role !== 'ADMIN_ROLE') {
-        return res.status(403).json({ ok: false, messa: 'Role not granted to create users' });
+        return res.status(403).json({ ok: false, messa: 'No tienes permisos para realizar esta acción' });
     }
 
     next();

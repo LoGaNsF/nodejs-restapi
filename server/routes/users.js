@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const User = require('../models/user');
 const { tokenValidation, roleGranted } = require('../middlewares/authentication');
+
 const app = express();
 
 app.get('/users', tokenValidation, (req, res) => {
@@ -50,8 +51,12 @@ app.put('/users/:id', [tokenValidation, roleGranted], (req, res) => {
         if (err) {
             return res.status(400).json({ ok: false, error: err });
         }
+
+        if (data) {
+            return res.json({ ok: true, data });
+        }
         
-        res.json({ ok: true, data });
+        res.status(404).json({ ok: false, message: 'Usuario no encontrado' });
     });
 });
 
